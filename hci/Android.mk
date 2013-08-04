@@ -13,7 +13,15 @@ ifeq ($(QCOM_BT_USE_SMD_TTY),true)
 
 LOCAL_CFLAGS += -DQCOM_WCN_SSR
 
+ifeq ($(TARGET_BUILD_VARIANT), userdebug)
+  LOCAL_CFLAGS += -DBTSNOOP_EXT_PARSER_INCLUDED=TRUE
 endif
+
+LOCAL_SRC_FILES += \
+        src/hci_mct.c \
+        src/userial_mct.c
+
+else
 
 LOCAL_SRC_FILES += \
         src/userial.c \
